@@ -1,0 +1,111 @@
+swagger: "2.0"
+info:
+  title: "Personal Book Organizer API"
+  description: "API do Organizador Pessoal de Livros"
+  version: "1.0.0"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "contato@pbo.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+basePath: "/api"
+tags:
+- name: "personal-book-organizer-api"
+  description: "Controle de notas de alunos"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+- name: "Livros"
+  description: "API de Livros"
+schemes:
+- "https"
+- "http"
+paths:
+  /livros:
+    post:
+      tags:
+      - "Livros"
+      summary: "Adiciona um novo livro"
+      description: ""
+      operationId: "addGrade"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Dados do livro a ser registrado"
+        required: true
+        schema:
+          $ref: "#/definitions/Livro"
+      responses:
+        "405":
+          description: "Invalid input"
+definitions:
+  Livro:
+    type: "object"
+    properties:
+      isbn:
+        type: "string"
+        example: "978-8588350441"
+        description: "Código único ISBN"
+      titulo:
+        type: "string"
+        example: "Mercado Financeiro. Objetivo e Profissional"
+        description: "Título"
+      sinopse:
+        type: "string"
+        example: "string"
+        description: "Breve resumo"
+      editora:
+        type: "string"
+        example: "Fundamento"
+        description: "Nome da editora"
+      edicao:
+        type: "string"
+        example: ""
+        description: "Número da edição"
+      anoEdicao:
+        type: "string"
+        example: "2005"
+        description: "Ano de edição"
+      numeroPaginas:
+        type: "integer"
+        example: 328 
+        description: "Total de número de páginas" 
+      idioma:
+        type: "string"
+        enum: [PT, EN, FR]
+        description: >-
+          `PT` - Português do Brasil.
+          `EN` - Inglês
+          `FR` - Francês
+      categoriaId:
+        type: "integer"
+        example: 23
+        description: "Código da categoria do livro"
+      tags:
+        type: array
+        example: ["Financas", "Investimentos de capital", "Mercado de capitais", "Risco - Avaliação"]
+        description: ""
+        items:
+          type: "string"
+      autoresId:
+        type: "array"
+        example: [32, 45]
+        items:
+          type: "integer"
+          description: ""
+          example: ""
+  
+  Categoria:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        description: ""
+        example: ""
+
